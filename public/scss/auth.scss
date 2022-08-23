@@ -1,0 +1,50 @@
+$logo1: #DD5A0E;
+$logo2: #B24A1A;
+$logo3: #758086;
+
+body {
+    background-color: #f5f5f5;
+}
+
+.box {
+    width: 100%;
+    margin: 25px 0px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    img {
+        max-width: 100%;
+        width: 75px;
+    }
+    .box-header {
+        background-color: #e1e1e1;
+        text-align: center;
+        padding: 30px;
+        color: $logo3;
+        font-size: 42px;
+        text-transform: uppercase;
+        border: 1px solid darken(#e1e1e1, 15%);
+    }
+    .box-body {
+        border: 1px solid darken(#e1e1e1, 15%);
+        border-top: none;
+        padding: 30px;
+    }
+}
+form {
+    a {
+        color: $logo1;
+    }
+}
+.btn-logo {
+    background-color: $logo1;
+    color: #fff;
+    &:hover {
+        background-color: $logo2;
+        color: #fff;
+    }
+}
+.error {
+    color: red;
+    font-style: italic;
+    font-size:12px;
+    padding: 5px;
+}

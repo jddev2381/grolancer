@@ -1,0 +1,28 @@
+.text-logo {
+    color: #DD5A0E;
+  }
+  
+  .bg-logo {
+    background-color: #DD5A0E;
+  }
+  
+  @media (min-width: 768px) {
+    .news-input {
+      width: 50%;
+    }
+  }
+  a.navbar-brand img {
+    width: 100px;
+  }
+  
+  .contributors img {
+    width: 150px;
+    border: 2px solid #DD5A0E;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+  }
+  .contributors a i {
+    transition: all 0.5s;
+  }
+  .contributors a i:hover {
+    color: #DD5A0E !important;
+  }
