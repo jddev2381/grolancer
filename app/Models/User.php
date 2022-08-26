@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Contact;
 use App\Models\Task;
+use App\Models\Invoice;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,10 @@ class User extends Authenticatable
     // Relationship to tasks
     public function tasks() {
         return $this->hasMany(Task::class, 'user_id');
+    }
+
+    // Relationship to invoices
+    public function invoices() {
+        return $this->hasMany(Invoice::class, 'user_id');
     }
 }
