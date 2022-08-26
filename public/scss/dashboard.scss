@@ -14,13 +14,20 @@ img.current-pic {
     margin: 0 auto;
     margin-bottom: 15px;
 }
+img.current-logo {
+    width: 100px;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
 .small-profile-pic {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     border: 1px solid white;
 }
-.current-pic-wrapper {
+.current-pic-wrapper, .current-logo-wrapper {
     display: flex;
     align-items: center;
 }

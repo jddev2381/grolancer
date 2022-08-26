@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('contact_id')->nullable();
             $table->string('name');
-            $table->text('description');
-            $table->dateTime('due_date');
+            $table->text('description')->nullable();
+            $table->dateTime('due_date')->nullable();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

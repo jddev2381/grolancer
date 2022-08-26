@@ -7,7 +7,11 @@
 
     <div class="row d-flex align-items-center justify-content-between mb-4">
         <div class="col">
-            <h3>Contacts</h3>
+            @if(isset($_GET['type']))
+                <h3>{{ ucwords($_GET['type']) }}s</h3>
+            @else
+                <h3>All Contacts</h3>
+            @endif
         </div>
         <div class="col-auto">
             <a href="/contacts/create" class="btn btn-logo">

@@ -34,6 +34,11 @@ class Contact extends Model
         return $this->hasMany(Activity::class, 'contact_id');
     }
 
+    // Relationship to tasks
+    public function tasks() {
+        return $this->hasMany(Task::class, 'contact_id');
+    }
+
     // Setup scope filter  
     public function scopeFilter($query, array $filters) {
         if($filters['search'] ?? false) {
@@ -50,6 +55,9 @@ class Contact extends Model
                 ->orWhere('state', 'like', "%{$filters['search']}%")
                 ->orWhere('zip', 'like', "%{$filters['search']}%")
                 ->orWhere('type', 'like', "%{$filters['search']}%");
+        }
+        if($filters['type'] ?? false) {
+            $query->where('type', $filters['type']);
         }
     }
 }

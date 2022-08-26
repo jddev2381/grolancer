@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\User;
 use App\Models\Activity;
+use App\Models\Task;
 
 class ContactsController extends Controller
 {
    // show contacts
    public function index(Request $request) {
-        $contacts = Contact::latest()->filter(request(['search']))->get();
+        $contacts = Contact::latest()->filter(request(['search']))->filter(request(['type']))->get();
         return view('contacts.index', ['contacts' => $contacts]);
    }
 
@@ -142,8 +143,9 @@ class ContactsController extends Controller
         if($contact->user_id != auth()->user()->id) {
             return redirect('/contacts')->with('message', 'You don\'t have permission to view that contact');
         }
+        $tasks = Task::where('contact_id', $id)->get();
         $activities = Activity::where('contact_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('contacts.show', ['contact' => $contact, 'activities' => $activities]);
+        return view('contacts.show', ['contact' => $contact, 'activities' => $activities, 'tasks' => $tasks]);
     }
 
     // Log activity for contact

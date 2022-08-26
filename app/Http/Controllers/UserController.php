@@ -81,8 +81,11 @@ class UserController extends Controller
                 Rule::unique('users')->ignore(auth()->user()->id),
             ],
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|dimensions:width=200,height=200',
+            'business_name' => 'nullable|min:2',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif',
             'password' => 'nullable|min:8|confirmed',
         ]);
+        //dd($formFields);
         if(!empty($formFields['password'])) {
             $formFields['password'] = bcrypt($formFields['password']);
         } else {
@@ -90,6 +93,9 @@ class UserController extends Controller
         }
         if($request->hasFile('avatar')) {
             $formFields['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        }
+        if($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
         auth()->user()->update($formFields);
         return redirect('/users/edit')->with('message', 'User updated!');

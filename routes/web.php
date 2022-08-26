@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,21 @@ Route::post('/contacts/{contact}/log', [ContactsController::class, 'logActivity'
 
 // Delete Activity for contact
 Route::delete('/contacts/{contact}/log/{activity}', [ContactsController::class, 'deleteActivity'])->middleware('auth');
+
+// Show Tasks
+Route::get('/tasks', [TasksController::class, 'index'])->middleware('auth');
+
+// Show create task form
+Route::post('/tasks/create', [TasksController::class, 'store'])->middleware('auth');
+
+// Show Single Task
+Route::get('/tasks/{task}', [TasksController::class, 'show'])->middleware('auth');
+
+// update task info 
+Route::put('/tasks/{task}', [TasksController::class, 'update'])->middleware('auth');
+
+// Delete Task  
+Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->middleware('auth');
+
+// Mark Task as Completed
+Route::put('/tasks/{task}/complete', [TasksController::class, 'complete'])->middleware('auth');

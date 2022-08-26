@@ -24,7 +24,7 @@
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="/contacts" method="GET">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" name="search" id="search" />
+                <input class="form-control" type="text" placeholder="Search contacts..." aria-label="Search for..." aria-describedby="btnNavbarSearch" name="search" id="search" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
@@ -104,14 +104,35 @@
                             </nav>
                         </div> --}}
                         <div class="sb-sidenav-menu-heading">CRM</div>
-                        <a class="nav-link" href="/contacts">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
                             Contacts
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/contacts">All </a>
+                                <a class="nav-link" href="/contacts?type=prospect">Prospects</a>
+                                <a class="nav-link" href="/contacts?type=lead">Leads</a>
+                                <a class="nav-link" href="/contacts?type=client">Clients</a>
+                            </nav>
+                        </div>
+                        {{-- <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Tables
+                        </a> --}}
+                        <div class="sb-sidenav-menu-heading">Workflow</div>
+                        <a class="nav-link" href="/tasks">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                            To Dos
                         </a>
+
+                        <div class="sb-sidenav-menu-heading">Payments</div>
+                        <a class="nav-link" href="/invoices">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                            Invoices
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

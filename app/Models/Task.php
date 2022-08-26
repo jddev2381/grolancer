@@ -19,4 +19,9 @@ class Task extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // Relationship to tasks
+    public function contact() {
+        return $this->belongsTo(Contact::class, 'contact_id');
+    }
 }
