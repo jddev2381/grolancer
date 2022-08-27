@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('paypal_link')->nullable();
+            $table->string('cashapp_tag')->nullable();
             $table->string('business_name')->nullable();
             $table->string('logo')->nullable();
             $table->rememberToken();

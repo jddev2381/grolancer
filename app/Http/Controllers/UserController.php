@@ -83,6 +83,8 @@ class UserController extends Controller
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|dimensions:width=200,height=200',
             'business_name' => 'nullable|min:2',
             'logo' => 'image|mimes:jpeg,png,jpg,gif',
+            'paypal_link' => 'nullable|min:5',
+            'cashapp_tag' => 'nullable|min:2',
             'password' => 'nullable|min:8|confirmed',
         ]);
         //dd($formFields);
@@ -101,9 +103,15 @@ class UserController extends Controller
         return redirect('/users/edit')->with('message', 'User updated!');
     }
 
-    // delete avatar {
+    // delete avatar 
     public function deleteAvatar(Request $request) {
         auth()->user()->update(['avatar' => null]);
         return redirect('/users/edit')->with('message', 'Avatar deleted!');
+    }
+
+    // delete logo
+    public function deleteLogo(Request $request) {
+        auth()->user()->update(['logo' => null]);
+        return redirect('/users/edit')->with('message', 'Logo deleted!');
     }
 }

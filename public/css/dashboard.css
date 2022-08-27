@@ -121,4 +121,47 @@ a.contact span.info {
   font-size: 20px;
 }
 
+.invoice-wrapper {
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  min-height: 200px;
+}
+.invoice-wrapper .invoice-logo img {
+  max-width: 200px;
+}
+.invoice-wrapper img {
+  max-width: 100%;
+}
+.invoice-wrapper .data {
+  text-align: right;
+}
+.invoice-wrapper .from, .invoice-wrapper .to {
+  background-color: #eee;
+  padding: 20px;
+}
+.invoice-wrapper h5.stretched {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.item p, .amount p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.payments {
+  background-color: #eee;
+  padding: 20px;
+}
+.payments h6 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=dashboard.css.map */

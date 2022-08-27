@@ -7,12 +7,13 @@ use App\Models\Contact;
 use App\Models\User;
 use App\Models\Activity;
 use App\Models\Task;
+use App\Models\Invoice;
 
 class ContactsController extends Controller
 {
    // show contacts
    public function index(Request $request) {
-        $contacts = Contact::latest()->filter(request(['search']))->filter(request(['type']))->get();
+        $contacts = Contact::where('user_id', auth()->user()->id)->filter(request(['search']))->filter(request(['type']))->orderBy('last_name')->get();
         return view('contacts.index', ['contacts' => $contacts]);
    }
 
@@ -144,8 +145,9 @@ class ContactsController extends Controller
             return redirect('/contacts')->with('message', 'You don\'t have permission to view that contact');
         }
         $tasks = Task::where('contact_id', $id)->get();
+        $invoices = Invoice::where('contact_id', $id)->get();
         $activities = Activity::where('contact_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('contacts.show', ['contact' => $contact, 'activities' => $activities, 'tasks' => $tasks]);
+        return view('contacts.show', ['contact' => $contact, 'activities' => $activities, 'tasks' => $tasks, 'invoices' => $invoices]);
     }
 
     // Log activity for contact

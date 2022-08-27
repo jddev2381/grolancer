@@ -88,6 +88,33 @@
             </div>
         </div>
 
+        <hr>
+        <p class="lead">Invoicing</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="paypal_link" name="paypal_link" placeholder="Paypal Link" value="{{ auth()->user()->paypal_link }}">
+                    <label for="paypal_link">PayPal Link</label>
+                    @error('paypal_link')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="cashapp_tag" name="cashapp_tag" placeholder="Cash App Tag" value="{{ auth()->user()->cashapp_tag }}">
+                        <label for="cashapp_tag">Cash App Tag</label>
+                        @error('cashapp_tag')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <hr>
         <p class="lead">Security</p>

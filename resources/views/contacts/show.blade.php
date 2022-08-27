@@ -56,8 +56,18 @@
 
 
             @if($tasks->count() > 0) 
-                <button class="btn w-100 btn-secondary" data-bs-toggle="modal" data-bs-target="#tasks">
+                <button class="btn w-100 btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#tasks">
                     <i class="fa-solid fa-tasks me-1"></i> Tasks ({{ $tasks->where('completed', false)->count() }})
+                </button>
+            @endif
+
+            <button class="btn w-100 btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addInvoice">
+                <i class="fa-solid fa-plus me-1"></i> Add Invoice
+            </button>
+
+            @if($invoices->count() > 0) 
+                <button class="btn w-100 btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#invoices">
+                    <i class="fa-solid fa-file-invoice-dollar me-1"></i> Invoices ({{ $invoices->where('paid', false)->count() }})
                 </button>
             @endif
 
@@ -152,6 +162,45 @@
 
 </div>
 
+
+<!-- Modal to add invoice -->
+<div class="modal fade" id="addInvoice" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Invoice</h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/invoices" method="POST">
+                    @csrf 
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="due_date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}">
+                        <label for="due_date">Due Date</label>
+                        @error('due_date')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <input type="hidden" name="contact" value="{{ $contact->id }}">
+    
+    
+                    <div class="d-flex justify-content-end mb-3">
+                        <button type="submit" class="btn btn-logo">
+                            <i class="fa-solid fa-plus me-1"></i> Create Invoice
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <!-- Modal to add task -->
 <div class="modal fade" id="addTask" tabindex="-1">
     <div class="modal-dialog"> 
@@ -232,6 +281,72 @@
                                                     @endif
                                                     <td class="align-middle text-center">
                                                         <a href="/tasks/{{$task->id}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>    
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal for Invoices -->
+<div class="modal fade" id="invoices" tabindex="-1" role="dialog" aria-labelledby="tasksLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tasksLabel">Invoices</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-muted">Invoices</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            @foreach($invoices as $invoice)
+                                                <tr>  
+                                                    <td>{{ $invoice->id}}</td>
+                                                    <td>
+                                                        @if($invoice->paid)
+                                                            <s>${{ number_format((float)$invoice->lineItems->sum('amount'), 2, '.', '')  }}</s>
+                                                        @else
+                                                            ${{ number_format((float)$invoice->lineItems->sum('amount'), 2, '.', '')  }}
+                                                        @endif
+                                                    </td>
+                                                    
+                                                    <td class="align-middle text-center">
+                                                        <a href="/invoices/{{$invoice->id}}/create" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>    
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <form action="/invoices/{{$invoice->id}}/pay" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-sm btn-success">
+                                                                <i class="fa-solid fa-dollar-sign"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

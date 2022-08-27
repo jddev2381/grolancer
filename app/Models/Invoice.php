@@ -21,4 +21,10 @@ class Invoice extends Model
     {
         return $this->hasMany(LineItem::class);
     }
+
+    // relationship to Contact
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

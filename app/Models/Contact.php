@@ -39,6 +39,11 @@ class Contact extends Model
         return $this->hasMany(Task::class, 'contact_id');
     }
 
+    // Relationship to invoices
+    public function invoices() {
+        return $this->hasMany(Invoice::class, 'contact_id');
+    }
+
     // Setup scope filter  
     public function scopeFilter($query, array $filters) {
         if($filters['search'] ?? false) {

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\InvoicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::post('/users/update', [UserController::class, 'update'])->middleware('aut
 Route::get('/users/billing', [PagesController::class, 'billing'])->middleware('auth');
 
 Route::get('/users/avatar/delete', [UserController::class, 'deleteAvatar'])->middleware('auth');
+
+Route::get('/users/logo/delete', [UserController::class, 'deleteLogo'])->middleware('auth');
 
 
 
@@ -97,3 +100,22 @@ Route::delete('/tasks/{task}', [TasksController::class, 'destroy'])->middleware(
 
 // Mark Task as Completed
 Route::put('/tasks/{task}/complete', [TasksController::class, 'complete'])->middleware('auth');
+
+
+// Show Invoices
+Route::get('/invoices', [InvoicesController::class, 'index'])->middleware('auth');
+
+
+Route::get('/invoices/{invoice}/create', [InvoicesController::class, 'addLineItem'])->middleware('auth');
+
+Route::post('/invoices/{invoice}/create', [InvoicesController::class, 'storeLineItem'])->middleware('auth');
+
+// Toggle paid invoice
+Route::put('/invoices/{invoice}/pay', [InvoicesController::class, 'togglePaid'])->middleware('auth');
+
+// Create new invoice
+Route::post('/invoices', [InvoicesController::class, 'store'])->middleware('auth');
+
+Route::delete('/invoices/{invoice}/items/{item}', [InvoicesController::class, 'deleteLineItem'])->middleware('auth');
+
+Route::get('/invoices/{invoice}/download', [InvoicesController::class, 'downloadInvoice'])->middleware('auth');

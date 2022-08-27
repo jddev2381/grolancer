@@ -111,6 +111,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/contacts/create">New</a>
                                 <a class="nav-link" href="/contacts">All </a>
                                 <a class="nav-link" href="/contacts?type=prospect">Prospects</a>
                                 <a class="nav-link" href="/contacts?type=lead">Leads</a>

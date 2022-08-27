@@ -12,7 +12,8 @@ class LineItem extends Model
     protected $fillable = [
         'invoice_id',
         'description',
-        'amount'
+        'amount',
+        'id'
     ];
 
     // relationship to Invoice

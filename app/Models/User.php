@@ -29,6 +29,8 @@ class User extends Authenticatable
         'password',
         'logo',
         'business_name',   
+        'paypal_link',
+        'cashapp_tag',
     ];
 
     /**
