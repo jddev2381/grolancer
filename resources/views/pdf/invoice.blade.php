@@ -8,17 +8,56 @@
 </head>
 <style>
 
+@page {
+    margin: 0cm 0cm;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-right: 1cm;
+    margin-left: 1cm;
 }
 h1, h2, h3, h4, h5, h6, p {
     padding: 0px;
     margin: 0px;
 }
+footer {
+    position: fixed; 
+    bottom: 0cm; 
+    left: 0cm; 
+    right: 0cm;
+    height: 1cm;
+    background-color: #DD5A0E;
+    color: white;
+    text-align: center;
+    line-height: 0.75cm;
+    font-size: 12px;
+}
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+header img {
+    width: 150px;
+}
+img.watermark {
+    width: 70px;
+    position: fixed;
+    top: 0.1cm;
+    right: 0.1cm;
+    opacity: 0.4;
+}
 
 </style>
 <body>
 
+
+    @if(auth()->user()->account_level == 'free')
+        <img class="watermark" src="img/grolancer-logo.png" alt="GroLancer">
+    @endif
 
     <table style="width: 100%;">
         <tr>
@@ -145,6 +184,14 @@ h1, h2, h3, h4, h5, h6, p {
     </table>
 
 
+
+    @if(auth()->user()->account_level == 'free')
+
+        <footer>
+            <p>Generated with <a href="https://grolancer.com" target="_blank">https://grolancer.com</a></p>
+        </footer>
+
+    @endif
 
 </body>
 </html>

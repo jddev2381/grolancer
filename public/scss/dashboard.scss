@@ -5,7 +5,9 @@ $logo3: #758086;
 img.logo {
     max-width: 60px;
 }
-
+.bg-logo {
+    background: $logo1;
+}
 img.current-pic {
     width: 90px;
     height: 90px;

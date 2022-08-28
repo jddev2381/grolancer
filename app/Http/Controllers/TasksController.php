@@ -11,7 +11,7 @@ class TasksController extends Controller
     // show tasks
     public function index(Request $request) {
         $contacts = Contact::where(['user_id' => auth()->user()->id])->orderBy('last_name')->get();
-        $tasks = Task::where('user_id', auth()->user()->id)->orderBy('due_date')->get();
+        $tasks = Task::where('user_id', auth()->user()->id)->orderBy('completed')->orderBy('due_date')->get();
         return view('tasks.index', ['tasks' => $tasks, 'contacts' => $contacts]);
     }
     

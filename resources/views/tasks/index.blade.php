@@ -96,52 +96,59 @@
             
         </div>
         <div class="col-sm-4 mt-4">
-            <form action="/tasks/create" method="POST">
-                @csrf
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="due_date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}">
-                    <label for="due_date">Due Date</label>
-                    @error('due_date')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+            <div class="card">
+                <div class="card-header bg-logo text-white">
+                    <h5 class="text-center mt-2">Add Task</h5>
                 </div>
+                <div class="card-body">
+                    <form action="/tasks/create" method="POST">
+                        @csrf
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="due_date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}">
+                            <label for="due_date">Due Date</label>
+                            @error('due_date')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                <div class="form-floating mb-3">
-                    <select class="form-select" id="contact_id" name="contact_id">
-                        <option value="">Select Contact</option>
-                        @foreach($contacts as $contact)
-                            <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected' : '' }}>
-                                {{ $contact->last_name }}, {{ $contact->first_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <label for="type">Type</label>
-                    @error('type')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
+                        {{-- <div class="form-floating mb-3">
+                            <select class="form-select" id="contact_id" name="contact_id">
+                                <option value="">Select Contact</option>
+                                @foreach($contacts as $contact)
+                                    <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected' : '' }}>
+                                        {{ $contact->last_name }}, {{ $contact->first_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <label for="type">Type</label>
+                            @error('type')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
 
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Task Name" value="{{ old('name') }}">
-                    <label for="name">Task Title</label>
-                    @error('name')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Task Name" value="{{ old('name') }}">
+                            <label for="name">Task Title</label>
+                            @error('name')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" style="height: 100px;" placeholder="Description" id="description" name="description">{{ old('description') }}</textarea>
-                    <label for="description">Details</label>
-                    @error('description')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" style="height: 100px;" placeholder="Description" id="description" name="description">{{ old('description') }}</textarea>
+                            <label for="description">Details</label>
+                            @error('description')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-logo">
+                                <i class="fa-solid fa-plus me-1"></i> Create Task
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-flex justify-content-end mb-3">
-                    <button type="submit" class="btn btn-logo">
-                        <i class="fa-solid fa-plus me-1"></i> Create Task
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
 
     </div>

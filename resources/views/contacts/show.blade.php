@@ -50,9 +50,7 @@
             </a>
 
 
-            <button class="btn w-100 btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTask">
-                <i class="fa-solid fa-plus me-1"></i> Add Task
-            </button>
+            
 
 
             @if($tasks->count() > 0) 
@@ -61,9 +59,7 @@
                 </button>
             @endif
 
-            <button class="btn w-100 btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addInvoice">
-                <i class="fa-solid fa-plus me-1"></i> Add Invoice
-            </button>
+        
 
             @if($invoices->count() > 0) 
                 <button class="btn w-100 btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#invoices">
@@ -77,6 +73,18 @@
 
         </div>
         <div class="col-8">
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn w-100 btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTask">
+                        <i class="fa-solid fa-plus me-1"></i> Add Task
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="btn w-100 btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addInvoice">
+                        <i class="fa-solid fa-plus me-1"></i> Add Invoice
+                    </button>
+                </div>
+            </div>
             <div class="card mb-3">
                 <form action="/contacts/{{$contact->id}}/log" method="POST">
                     @csrf
