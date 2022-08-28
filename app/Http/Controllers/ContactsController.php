@@ -13,7 +13,7 @@ class ContactsController extends Controller
 {
    // show contacts
    public function index(Request $request) {
-        $contacts = Contact::where('user_id', auth()->user()->id)->filter(request(['search']))->filter(request(['type']))->orderBy('last_name')->get();
+        $contacts = Contact::where('user_id', auth()->user()->id)->filter(request(['search']))->filter(request(['type']))->orderBy('last_name')->paginate(15);
         return view('contacts.index', ['contacts' => $contacts]);
    }
 

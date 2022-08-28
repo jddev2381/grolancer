@@ -9,16 +9,16 @@
         <div class="col">
             <h3>Tasks</h3>
         </div>
-        {{-- <div class="col-auto">
-            <a href="/tasks/create" class="btn btn-logo">
-                <i class="fa-solid fa-plus me-1"></i> Add Task
-            </a>
-        </div> --}}
+        <div class="col-auto">
+            <button href="/tasks/create" class="btn btn-logo" data-bs-toggle="modal" data-bs-target="#addTask">
+                <i class="fa-solid fa-plus me-1"></i> Create Task
+            </button>
+        </div>
     </div>
 
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
 
 
             <table class="table table-striped">
@@ -87,72 +87,80 @@
                 </tbody>
             </table>
         
-
-
-
-
-
-
+            {{ $tasks->links() }}
             
-        </div>
-        <div class="col-sm-4 mt-4">
-            <div class="card">
-                <div class="card-header bg-logo text-white">
-                    <h5 class="text-center mt-2">Add Task</h5>
-                </div>
-                <div class="card-body">
-                    <form action="/tasks/create" method="POST">
-                        @csrf
-                        <div class="form-floating mb-3">
-                            <input type="date" class="form-control" id="due_date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}">
-                            <label for="due_date">Due Date</label>
-                            @error('due_date')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        {{-- <div class="form-floating mb-3">
-                            <select class="form-select" id="contact_id" name="contact_id">
-                                <option value="">Select Contact</option>
-                                @foreach($contacts as $contact)
-                                    <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected' : '' }}>
-                                        {{ $contact->last_name }}, {{ $contact->first_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <label for="type">Type</label>
-                            @error('type')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
-
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Task Name" value="{{ old('name') }}">
-                            <label for="name">Task Title</label>
-                            @error('name')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" style="height: 100px;" placeholder="Description" id="description" name="description">{{ old('description') }}</textarea>
-                            <label for="description">Details</label>
-                            @error('description')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-logo">
-                                <i class="fa-solid fa-plus me-1"></i> Create Task
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
 
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+<!-- Modal To Add Task -->
+<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="tasksLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tasksLabel">Add Task</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="/tasks/create" method="POST">
+                    @csrf
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="due_date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}">
+                        <label for="due_date">Due Date</label>
+                        @error('due_date')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Task Name" value="{{ old('name') }}">
+                        <label for="name">Task Title</label>
+                        @error('name')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" style="height: 100px;" placeholder="Description" id="description" name="description">{{ old('description') }}</textarea>
+                        <label for="description">Details</label>
+                        @error('description')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-logo">
+                            <i class="fa-solid fa-plus me-1"></i> Add Task
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 @endsection

@@ -11,13 +11,11 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class InvoicesController extends Controller
 {
     public function index() {
-        $contacts = Contact::where('user_id', auth()->user()->id)->orderBy('last_name')->get();
-        $invoices = Invoice::where('user_id', auth()->user()->id)->get();
-        return view('invoices.index', ['invoices' => $invoices, 'contacts' => $contacts]);
+        $invoices = Invoice::where('user_id', auth()->user()->id)->paginate(15);
+        return view('invoices.index', ['invoices' => $invoices]);
     }
 
-    public function create()
-    {
+    public function create(){
         return view('invoices.create');
     }
 
@@ -66,8 +64,13 @@ class InvoicesController extends Controller
     // Toggle Paid
     public function togglePaid(Invoice $invoice) {
         $invoice->paid = !$invoice->paid;
+        if($invoice->paid) {
+            $status = 'Paid';
+        } else {
+            $status = 'Unpaid';
+        }
         $invoice->save();
-        return back()->with('message', 'Invoice ' . $invoice->id . ' changed status');
+        return back()->with('message', 'Invoice ' . $invoice->id . ' changed to ' . $status);
     }
 
     public function downloadInvoice(Invoice $invoice) {

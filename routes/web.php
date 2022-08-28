@@ -65,6 +65,7 @@ Route::get('/contacts/create', [ContactsController::class, 'create'])->middlewar
 // Create new contact
 Route::post('/contacts', [ContactsController::class, 'store'])->middleware('auth');
 
+
 // Delete a contact
 Route::delete('/contacts/{contact}', [ContactsController::class, 'destroy'])->middleware('auth');
 

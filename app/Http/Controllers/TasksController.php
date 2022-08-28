@@ -10,19 +10,14 @@ class TasksController extends Controller
 {
     // show tasks
     public function index(Request $request) {
-        $contacts = Contact::where(['user_id' => auth()->user()->id])->orderBy('last_name')->get();
-        $tasks = Task::where('user_id', auth()->user()->id)->orderBy('completed')->orderBy('due_date')->get();
-        return view('tasks.index', ['tasks' => $tasks, 'contacts' => $contacts]);
+        //$contacts = Contact::where(['user_id' => auth()->user()->id])->orderBy('last_name')->get();
+        $tasks = Task::where('user_id', auth()->user()->id)->orderBy('completed')->orderBy('due_date')->paginate(15);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
     
-    // show create task form
-    // public function create() {
-    //     return view('tasks.create');
-    // }
     
     // create new task
     public function store(Request $request) {
-        //dd($request->all());
         // validate form data
         $this->validate($request, [
             'name' => 'required|max:255',

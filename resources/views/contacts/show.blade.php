@@ -23,7 +23,7 @@
         </div>
         <div class="col-auto">
             <a href="/contacts" class="btn btn-secondary">
-                <i class="fa-solid fa-arrow-left me-1"></i> Back
+                <i class="fa-solid fa-arrow-left me-1"></i> Contacts
             </a>
         </div>
     </div>

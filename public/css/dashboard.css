@@ -43,7 +43,7 @@ img.current-logo {
 }
 
 .btn-logo {
-  background-color: #DD5A0E;
+  background-color: #DD5A0E !important;
   color: white !important;
   transition: all 0.3s;
 }
