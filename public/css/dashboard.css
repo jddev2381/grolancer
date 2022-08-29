@@ -135,6 +135,16 @@ a.contact span.info {
   padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   min-height: 200px;
+  position: relative;
+}
+.invoice-wrapper #paid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 400px;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: -200px;
 }
 .invoice-wrapper .invoice-logo img {
   max-width: 200px;
@@ -155,6 +165,14 @@ a.contact span.info {
   border-bottom: 2px solid black;
 }
 
+@media (max-width: 900px) {
+  .invoice-wrapper #paid {
+    height: 200px;
+    width: 300px;
+    margin-left: -150px;
+    margin-top: -100px;
+  }
+}
 .text-right {
   text-align: right;
 }

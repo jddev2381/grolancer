@@ -21,7 +21,9 @@
     <div class="invoice-wrapper">
 
 
-
+        @if($invoice->paid)
+            <img id="paid" src="{{ asset('img/paid-stamp.png') }}" alt="Paid">
+        @endif
 
         <div class="row d-flex align-items-center justify-content-between">
             <div class="col">
@@ -126,33 +128,35 @@
         
         
 
-        <form action="/invoices/{{$invoice->id}}/create" method="POST">
-            @csrf 
-            <div class="row mt-3">
-                <div class="col-9">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ old('description') }}">
-                        <label for="description">Description</label>
-                        @error('description')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+        @if(!$invoice->paid)
+            <form action="/invoices/{{$invoice->id}}/create" method="POST">
+                @csrf 
+                <div class="row mt-3">
+                    <div class="col-9">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ old('description') }}">
+                            <label for="description">Description</label>
+                            @error('description')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating mb-3 text-right">
+                            <input type="number" class="form-control text-right" id="amount" name="amount" placeholder="Amount" value="{{ old('amount') }}">
+                            <label for="amount">Amount</label>
+                            @error('amount')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="form-floating mb-3 text-right">
-                        <input type="number" class="form-control text-right" id="amount" name="amount" placeholder="Amount" value="{{ old('amount') }}">
-                        <label for="amount">Amount</label>
-                        @error('amount')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-            </div>
 
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-logo"><i class="fa-solid fa-plus me-1"></i> Add Item</button>
-            </div>
-        </form>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-logo"><i class="fa-solid fa-plus me-1"></i> Add Item</button>
+                </div>
+            </form>
+        @endif
 
 
 
@@ -180,7 +184,9 @@
     </div>
 
 
-    <a class="btn btn-logo btn-lg btn-block w-100 mt-5 mb-5" href="/invoices/{{ $invoice->id }}/download" target="_blank">Download Invoice</a>
+    @if(!$invoice->paid)
+        <a class="btn btn-logo btn-lg btn-block w-100 mt-5 mb-5" href="/invoices/{{ $invoice->id }}/download" target="_blank">Download Invoice</a>
+    @endif
 
 
 </div>
