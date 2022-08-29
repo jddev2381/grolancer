@@ -47,7 +47,7 @@
                                 <td class="align-middle">{{ $task->due_date ? date('m/d/Y', strtotime($task->due_date)) : '' }}</td>
                                 <td class="align-middle text-center"> 
                                     @if($task->contact_id)
-                                        <a class="btn btn-sm btn-light" href="/contacts/{{ $task->contact_id }}">{{ $task->contact->first_name }} {{ $task->contact->last_name }}</a>
+                                        <a class="btn btn-sm btn-dark" href="/contacts/{{ $task->contact_id }}">{{ $task->contact->first_name }} {{ $task->contact->last_name }}</a>
                                     @else
                                         <span class="text-muted">NA</span>
                                     @endif
@@ -58,15 +58,6 @@
                                     </a>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <form action="/tasks/{{ $task->id }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"> 
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td class="align-middle text-center">
                                     <form action="/tasks/{{$task->id}}/complete" method="POST">
                                         @csrf
                                         @method('PUT')
@@ -75,6 +66,16 @@
                                         </button>
                                     </form>
                                 </td>
+                                <td class="align-middle text-center">
+                                    <form action="/tasks/{{ $task->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"> 
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                
                             </tr>
                         @endforeach
                     @else 

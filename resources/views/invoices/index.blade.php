@@ -37,7 +37,7 @@
                                     {{ $invoice->id }}
                                 </td>
                                 <td class="align-middle">
-                                    <a href="/contacts/{{ $invoice->contact_id }}">{{ $invoice->contact->first_name }} {{ $invoice->contact->last_name }}</a>
+                                    <a class="btn btn-dark" href="/contacts/{{ $invoice->contact_id }}">{{ $invoice->contact->first_name }} {{ $invoice->contact->last_name }}</a>
                                 </td>
                                 <td class="align-middle text-right">
                                     @if($invoice->paid)

@@ -44,7 +44,7 @@
                         <th>Mobile</th>
                         <th>Email Address</th>
                         <th>Website</th>
-                        <th>Type</th>
+                        <th class="text-center">Type</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -52,17 +52,17 @@
                     @if($contacts->count() > 0)
                         @foreach($contacts as $contact)
                             <tr>
-                                <td><a href="/contacts/{{$contact->id}}">{{ $contact->first_name }} {{ $contact->last_name }}</a></td>
+                                <td><a class="btn btn-dark w-100" href="/contacts/{{$contact->id}}">{{ $contact->first_name }} {{ $contact->last_name }}</a></td>
                                 <td>{{ $contact->title }}</td>
                                 <td>{{ $contact->company_name }}</td>
                                 <td>{{ $contact->mobile }}</td>
                                 <td>{{ $contact->email }}</td>  
                                 <td>{{ $contact->website }}</td>
-                                <td>{{ $contact->type }}</td>
+                                <td><a class="btn btn-sm w-100 btn-info" href="/contacts?type={{$contact->type}}">{{ strtoupper($contact->type) }}</a></td>
                                 <td class="text-center">
-                                    <a href="/contacts/{{ $contact->id }}/edit" class="btn btn-sm btn-primary">
+                                    {{-- <a href="/contacts/{{ $contact->id }}/edit" class="btn btn-sm btn-primary">
                                         <i class="fa-solid fa-edit me-1"></i> Edit
-                                    </a>
+                                    </a> --}}
                                     <form action="/contacts/{{ $contact->id }}" method="POST" class="d-inline">
                                         @method('DELETE')
                                         @csrf

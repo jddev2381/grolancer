@@ -78,4 +78,10 @@ class InvoicesController extends Controller
         $pdf = PDF::loadView('pdf.invoice', ['invoice' => $invoice, 'items' => $items]);
         return $pdf->stream();
     }
+
+    // Delete invoice
+    public function destroy(Invoice $invoice) {
+        $invoice->delete();
+        return back()->with('message', 'Invoice deleted successfully');
+    }
 }

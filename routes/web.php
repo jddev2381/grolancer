@@ -106,6 +106,9 @@ Route::put('/tasks/{task}/complete', [TasksController::class, 'complete'])->midd
 // Show Invoices
 Route::get('/invoices', [InvoicesController::class, 'index'])->middleware('auth');
 
+// Delete Invoice
+Route::delete('/invoices/{invoice}', [InvoicesController::class, 'destroy'])->middleware('auth');
+
 
 Route::get('/invoices/{invoice}/create', [InvoicesController::class, 'addLineItem'])->middleware('auth');
 

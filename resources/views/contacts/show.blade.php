@@ -279,16 +279,50 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Due Date</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             @foreach($tasks as $task)
                                                 <tr>
                                                     @if($task->completed)
                                                         <td><strike>{{ $task->name }}</strike></td>
                                                     @else
-                                                        <td>{{ $task->name }}</td>
+                                                        <td>
+                                                            <span data-bs-toggle="tooltip" title="{{ $task->description }}">{{ $task->name }}</span>    
+                                                        </td>
                                                     @endif
+                                                    <td>
+                                                        @if($task->due_date)
+                                                            {{ date('m/d/Y', strtotime($task->due_date)) }}
+                                                        @endif
+                                                    </td>
                                                     <td class="align-middle text-center">
                                                         <a href="/tasks/{{$task->id}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>    
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <form action="/tasks/{{$task->id}}/complete" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-sm btn-success"> 
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <form action="/tasks/{{ $task->id }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger"> 
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -332,6 +366,15 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Invoice #</th>
+                                                <th>Total</th>
+                                                <th>View</th>
+                                                <th>Paid/Unpaid</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             @foreach($invoices as $invoice)
                                                 <tr>  
@@ -353,6 +396,15 @@
                                                             @method('PUT')
                                                             <button type="submit" class="btn btn-sm btn-success">
                                                                 <i class="fa-solid fa-dollar-sign"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <form action="/invoices/{{ $invoice->id }}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                <i class="fa-solid fa-trash-can"></i>
                                                             </button>
                                                         </form>
                                                     </td>

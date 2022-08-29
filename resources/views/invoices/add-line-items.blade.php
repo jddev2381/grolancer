@@ -13,7 +13,7 @@
         
         <div class="col-auto">
             <a href="/invoices" class="btn btn-secondary">
-                <i class="fa-solid fa-arrow-left me-1"></i> Back
+                <i class="fa-solid fa-arrow-left me-1"></i> Invoices
             </a>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div class="col-4">
                 <div class="to">
                     <h6>To</h6>
-                    <p>{{ $invoice->contact->first_name }} {{ $invoice->contact->last_name }}</p>
+                    <p><a href="/contacts/{{$invoice->contact->id}}">{{ $invoice->contact->first_name }} {{ $invoice->contact->last_name }}</a></p>
                 </div>
             </div>
         </div>
