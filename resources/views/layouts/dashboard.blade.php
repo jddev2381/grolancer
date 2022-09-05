@@ -12,6 +12,8 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
+    <script src="https://cdn.tiny.cloud/1/1ud1pvkf8goe63u3y9avrcfy29q3awxnqe87iebwxkpuzf2s/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -138,6 +140,11 @@
                             Invoices
                         </a>
 
+                        <a class="nav-link" href="/proposals">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
+                            Proposals
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -183,5 +190,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
     <script src="{{ asset('js/script.js') }}"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#body',
+            height: 400,
+        });
+    </script>
 </body>
 </html>

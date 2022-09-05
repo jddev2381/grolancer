@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Activity;
 use App\Models\Task;
 use App\Models\Invoice;
+use App\Models\Proposal;
 
 class ContactsController extends Controller
 {
@@ -144,10 +145,17 @@ class ContactsController extends Controller
         if($contact->user_id != auth()->user()->id) {
             return redirect('/contacts')->with('message', 'You don\'t have permission to view that contact');
         }
+        $proposals = Proposal::where('contact_id', $id)->get();
         $tasks = Task::where(['contact_id' => $id, 'completed' => false])->orderBy('due_date')->get();
         $invoices = Invoice::where('contact_id', $id)->get();
         $activities = Activity::where('contact_id', $id)->orderBy('created_at', 'DESC')->get();
-        return view('contacts.show', ['contact' => $contact, 'activities' => $activities, 'tasks' => $tasks, 'invoices' => $invoices]);
+        return view('contacts.show', [
+            'contact' => $contact, 
+            'activities' => $activities, 
+            'tasks' => $tasks, 
+            'invoices' => $invoices,
+            'proposals' => $proposals
+        ]);
     }
 
     // Log activity for contact

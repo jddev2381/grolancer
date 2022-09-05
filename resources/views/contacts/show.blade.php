@@ -30,7 +30,7 @@
        
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-sm-4">
             <div class="person-card mb-3">
                 <h3>{{$contact->first_name}}  {{ $contact->last_name }}</h3>
                 <h4>{{ $contact->type }}</h4>
@@ -67,21 +67,43 @@
                 </button>
             @endif
 
+            @if($proposals->count() > 0) 
+                <h4>Proposals</h4>
+                @foreach($proposals as $proposal) 
+
+                    <a class="btn btn-dark mb-3 w-100" href="/proposals/{{$proposal->id}}">
+                        @if($proposal->status == 'accepted')
+                            <i class="fa-solid fa-file-contract me-1"></i>
+                        @else 
+                            <i class="fa-solid fa-file-lines me-1"></i>
+                        @endif
+                        <span>{{ $proposal->name }}</span>
+                    </a>
+
+                @endforeach
+            @endif
+            
+
 
 
 
 
         </div>
-        <div class="col-8">
+        <div class="col-sm-8">
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <button class="btn w-100 btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTask">
-                        <i class="fa-solid fa-plus me-1"></i> Add Task
+                        <i class="fa-solid fa-plus me-1"></i> Task
                     </button>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <button class="btn w-100 btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addInvoice">
-                        <i class="fa-solid fa-plus me-1"></i> Add Invoice
+                        <i class="fa-solid fa-plus me-1"></i> Invoice
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button class="btn w-100 btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#addProposal">
+                        <i class="fa-solid fa-plus me-1"></i> Proposal
                     </button>
                 </div>
             </div>
@@ -169,6 +191,58 @@
 
 
 </div>
+
+
+
+<!-- Modal to add Proposal -->
+<div class="modal fade" id="addProposal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Proposal</h5>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/proposals" method="POST">
+                    @csrf 
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                        <label for="due_date">Name</label>
+                        @error('name')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" value="{{ old('amount') }}">
+                        <label for="amount">Amount</label>
+                        @error('amount')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <input type="hidden" name="contact" value="{{ $contact->id }}">
+    
+    
+                    <div class="d-flex justify-content-end mb-3">
+                        <button type="submit" class="btn btn-logo">
+                            <i class="fa-solid fa-plus me-1"></i> Create Proposal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
 
 <!-- Modal to add invoice -->

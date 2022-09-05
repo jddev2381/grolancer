@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500&display=swap");
+nav {
+  background-color: #212529;
+  color: white;
+  padding: 10px;
+}
+nav p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.meta-info p {
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+}
+
+.proposal-wrapper {
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  min-height: 200px;
+  margin: 15px 0px;
+}
+.proposal-wrapper .proposal-logo {
+  max-width: 200px;
+}
+.proposal-wrapper .proposal-logo img {
+  width: 100%;
+}
+.proposal-wrapper .data {
+  text-align: right;
+}
+
+.sigs {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+.sigs p.name {
+  font-size: 42px;
+  font-family: "Qwitcher Grypen", cursive;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  min-width: 300px;
+  min-height: 40px;
+}
+.sigs p.date {
+  text-align: center;
+}
+
+.proposal-section {
+  margin-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #e1e1e1;
+}
+.proposal-section .title {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #DD5A0E;
+  font-weight: bold;
+}
+.proposal-section .section-body h1 {
+  font-size: 24px;
+}
+.proposal-section .section-body h2 {
+  font-size: 22px;
+}
+.proposal-section .section-body h3 {
+  font-size: 20px;
+}
+.proposal-section .section-body h4 {
+  font-size: 18px;
+}
+.proposal-section .section-body h5 {
+  font-size: 16px;
+}
+.proposal-section .section-body h6 {
+  font-size: 14px;
+}
+.proposal-section .section-body p {
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=plain.css.map */

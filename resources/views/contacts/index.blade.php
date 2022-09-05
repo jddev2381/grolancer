@@ -39,11 +39,9 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Title</th>
-                        <th>Company</th>
                         <th>Mobile</th>
                         <th>Email Address</th>
-                        <th>Website</th>
+                        <th class="text-center">Tasks</th>
                         <th class="text-center">Type</th>
                         <th></th>
                     </tr>
@@ -53,11 +51,9 @@
                         @foreach($contacts as $contact)
                             <tr>
                                 <td><a class="btn btn-dark w-100" href="/contacts/{{$contact->id}}">{{ $contact->first_name }} {{ $contact->last_name }}</a></td>
-                                <td>{{ $contact->title }}</td>
-                                <td>{{ $contact->company_name }}</td>
                                 <td>{{ $contact->mobile }}</td>
                                 <td>{{ $contact->email }}</td>  
-                                <td>{{ $contact->website }}</td>
+                                <td class="text-center">{{ $contact->tasks->where('completed', false)->count() }}</td>
                                 <td><a class="btn btn-sm w-100 btn-info" href="/contacts?type={{$contact->type}}">{{ strtoupper($contact->type) }}</a></td>
                                 <td class="text-center">
                                     {{-- <a href="/contacts/{{ $contact->id }}/edit" class="btn btn-sm btn-primary">
@@ -67,7 +63,7 @@
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa-solid fa-trash-alt me-1"></i> Delete
+                                            <i class="fa-solid fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -75,7 +71,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="7" class="text-center">No Contacts Found</td>
+                            <td colspan="5" class="text-center">No Contacts Found</td>
                         </tr>
                     @endif
                     

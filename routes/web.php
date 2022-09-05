@@ -6,6 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\ProposalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,3 +124,44 @@ Route::post('/invoices', [InvoicesController::class, 'store'])->middleware('auth
 Route::delete('/invoices/{invoice}/items/{item}', [InvoicesController::class, 'deleteLineItem'])->middleware('auth');
 
 Route::get('/invoices/{invoice}/download', [InvoicesController::class, 'downloadInvoice'])->middleware('auth');
+
+
+
+
+// Show Proposal
+Route::get('/proposals', [ProposalController::class, 'index'])->middleware('auth');
+
+// Store Proposal
+Route::post('/proposals', [ProposalController::class, 'store'])->middleware('auth');
+
+// Show Single Proposal
+Route::get('/proposals/{proposal}', [ProposalController::class, 'show'])->middleware('auth');
+
+// Add Section to Proposal
+Route::post('/proposals/{proposal}/sections', [ProposalController::class, 'addSection'])->middleware('auth');
+
+// Edit proposal section
+Route::get('/proposals/{proposal}/sections/{section}/edit', [ProposalController::class, 'editSection'])->middleware('auth');
+
+// Update proposal section
+Route::put('/proposals/{proposal}/sections/{section}/edit', [ProposalController::class, 'updateSection'])->middleware('auth');
+
+// Delete Proposal Section
+Route::delete('/proposals/{proposal}/sections/{section}', [ProposalController::class, 'deleteSection'])->middleware('auth');
+
+// Delete Proposal
+Route::delete('/proposals/{proposal}', [ProposalController::class, 'destroy'])->middleware('auth');
+
+
+
+// Customer Facing Proposal View
+Route::get('/proposal/{proposal}/view/{token}', [ProposalController::class, 'viewProposal']);
+
+// Customer Accept Proposal
+Route::post('/proposal/{proposal}/view/{token}', [ProposalController::class, 'acceptProposal']);
+
+// Send Proposal
+Route::get('/proposals/{proposal}/send', [ProposalController::class, 'sendProposal'])->middleware('auth');
+
+// Download Proposal
+Route::get('/proposals/{proposal}/download/{token}', [ProposalController::class, 'downloadProposal']);
