@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\Contact;
 use App\Models\LineItem;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\TimeSlot;
 
 class InvoicesController extends Controller
 {
@@ -35,7 +36,8 @@ class InvoicesController extends Controller
 
     public function addLineItem(Invoice $invoice) {
         $items = LineItem::where('invoice_id', $invoice->id)->get();
-        return view('invoices.add-line-items', ['invoice' => $invoice, 'items' => $items]);
+        $timeSlots = TimeSlot::where('contact_id', $invoice->contact_id)->where('status', 'pending')->get();
+        return view('invoices.add-line-items', ['invoice' => $invoice, 'items' => $items, 'timeSlots' => $timeSlots]);
     }
 
     public function storeLineItem(Request $request, Invoice $invoice) {

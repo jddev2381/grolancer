@@ -31,7 +31,7 @@
 
             <div class="col data">
                 <h5 class="text-muted mb-3">Proposal ID: <span class="holder">{{ $proposal->id }}</span></h5>
-                <h5 class="text-muted">Amount: <span class="holder">{{ $proposal->amount  }}</span></h5>
+                <h5 class="text-muted">Amount: $<span class="holder">{{ $proposal->amount  }}</span></h5>
             </div>
         </div>
 
@@ -133,7 +133,7 @@
                         <p class="name">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
                         <p class="date text-muted p-0 m-0">
                             {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}<br>
-                            {{ date('m/d/Y') }}
+                            {{ date('m/d/Y', strtotime($proposal->created_at)) }}
                         </p>
                     </div>
                     <div class="sig2">

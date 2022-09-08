@@ -125,6 +125,57 @@
 
         @endif
 
+
+
+        @if($timeSlots->count() > 0)
+        <h4>Unbilled Timers</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th class="text-center">Time</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($timeSlots as $slot)
+
+                <tr>
+                    <td>{{ $slot->name }}</td>
+                    <td class="text-center">
+                        @if($slot->end_time == null)
+                            <a href="/timing/{{$slot->id}}/stop" class="btn btn-success">Stop Timer</a>    
+                        @else
+                            @php
+                                $time = $slot->start_time->diffInSeconds($slot->end_time)
+                            @endphp 
+                            {{ gmdate("H:i:s", $time) }}
+                        @endif
+                    </td>
+                    <td class="text-right">
+                        <form action="/timing/{{$slot->id}}/billed" method="POST">
+                            @csrf 
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success">Mark Billed</button>
+                        </form>
+                    </td>
+                    <td class="text-right">
+                        <!-- Delete Timer -->
+                        <form action="/timing/{{ $slot->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+
+            @endforeach
+            </tbody>
+        </table>
+        @endif
+
+
         
         
 

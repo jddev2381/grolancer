@@ -145,6 +145,11 @@
                             Proposals
                         </a>
 
+                        <a class="nav-link" href="/timing">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                            Timing
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Contact;
 use App\Models\Task;
 use App\Models\Invoice;
+use App\Models\TimeSlot;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,10 @@ class User extends Authenticatable
     // Relationship to invoices
     public function invoices() {
         return $this->hasMany(Invoice::class, 'user_id');
+    }
+
+    // Relationship To TimeSlots
+    public function timeSlots() {
+        return $this->hasMany(TimeSlot::class, 'user_id');
     }
 }

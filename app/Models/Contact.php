@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Activity;
+use App\Models\TimeSlot;
+
 
 class Contact extends Model
 {
@@ -42,6 +44,11 @@ class Contact extends Model
     // Relationship to invoices
     public function invoices() {
         return $this->hasMany(Invoice::class, 'contact_id');
+    }
+
+    // Relationship to time slots
+    public function timeSlots() {
+        return $this->hasMany(TimeSlot::class, 'contact_id');
     }
 
     // Setup scope filter  

@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\TimeSlotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,3 +166,18 @@ Route::get('/proposals/{proposal}/send', [ProposalController::class, 'sendPropos
 
 // Download Proposal
 Route::get('/proposals/{proposal}/download/{token}', [ProposalController::class, 'downloadProposal']);
+
+// Timing
+Route::get('/timing', [TimeSlotController::class, 'index'])->middleware('auth');
+
+// Create new time slot
+Route::post('/timing', [TimeSlotController::class, 'store'])->middleware('auth');
+
+// Stop Timer
+Route::get('/timing/{timeSlot}/stop', [TimeSlotController::class, 'stopTimer'])->middleware('auth');
+
+// Delete Time Slot
+Route::delete('/timing/{timeSlot}', [TimeSlotController::class, 'destroy'])->middleware('auth');
+
+// Mark Timer Billed
+Route::put('/timing/{timeSlot}/billed', [TimeSlotController::class, 'markBilled'])->middleware('auth');
