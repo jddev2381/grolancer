@@ -23,6 +23,7 @@
         <thead>
             <tr>
                 <th>Contact</th>
+                <th>Description</th>
                 <th>Start Time</th>
                 <th>Stop Time</th>
                 <th class="text-center">Time</th>
@@ -36,6 +37,7 @@
                 @foreach($slots as $slot)
                     <tr>
                         <td><a class="btn btn-link" href="/contacts/{{ $slot->contact->id }}">{{ $slot->contact->first_name }} {{ $slot->contact->last_name }}</a></td>
+                        <td>{{ $slot->name }}</td>
                         <td>{{ $slot->start_time }} UTC</td>
                         <td>{{ $slot->end_time }} UTC</td>
                         <td class="text-center">

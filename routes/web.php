@@ -8,6 +8,7 @@ use App\Http\Controllers\TasksController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\TimeSlotController;
+use App\Http\Controllers\ForumTopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,3 +182,12 @@ Route::delete('/timing/{timeSlot}', [TimeSlotController::class, 'destroy'])->mid
 
 // Mark Timer Billed
 Route::put('/timing/{timeSlot}/billed', [TimeSlotController::class, 'markBilled'])->middleware('auth');
+
+// Show Forum
+Route::get('/forum', [ForumTopicController::class, 'index'])->middleware('auth');
+
+// Create new forum topic
+Route::get('/forum/create', [ForumTopicController::class, 'create'])->middleware('auth');
+
+// Store new forum topic
+Route::post('/forum/create', [ForumTopicController::class, 'store'])->middleware('auth');

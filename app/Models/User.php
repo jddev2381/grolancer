@@ -72,4 +72,9 @@ class User extends Authenticatable
     public function timeSlots() {
         return $this->hasMany(TimeSlot::class, 'user_id');
     }
+
+    // Relationship To Forum Topics
+    public function forumTopics() {
+        return $this->hasMany(ForumTopic::class, 'user_id');
+    }
 }

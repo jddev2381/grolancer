@@ -150,6 +150,11 @@
                             Timing
                         </a>
 
+                        <a class="nav-link" href="/forum">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-comments"></i></div>
+                            Forum
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
